@@ -1,0 +1,155 @@
+.header {
+    /* Палітра (темна за замовчуванням, узгоджена з Footer) */
+    --header-bg: #111827; /* фон хедера */
+    --header-fg: #ffffff; /* основний текст */
+    --header-muted: #9ca3af; /* приглушений текст / посилання */
+    --header-border: #1f2937; /* лінія-розділювач */
+    --header-accent-from: var(--color-accent, #3b82f6); /* градієнт лого (початок) */
+    --header-accent-to: var(--color-accent-secondary, #9333ea); /* градієнт лого (кінець) */
+
+    width: 100%;
+    background-color: var(--header-bg);
+    color: var(--header-fg);
+    border-bottom: 1px solid var(--header-border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.container {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 14px 16px;
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.topRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logoIcon {
+    width: 32px;
+    height: 32px;
+    background-image: linear-gradient(to bottom right, var(--header-accent-from), var(--header-accent-to));
+    border-radius: var(--radius-sm, 8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logoSvg {
+    width: 19px;
+    height: 19px;
+    color: #ffffff;
+}
+
+.logoText {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    color: var(--header-fg);
+}
+
+.desktopNav {
+    display: none;
+}
+
+.navLink {
+    color: var(--header-muted);
+    text-decoration: none;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+.navLink:hover {
+    color: var(--header-fg);
+}
+
+.mobileMenuButton {
+    display: block;
+    padding: 6px;
+    color: var(--header-muted);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.mobileMenuButton:hover {
+    color: var(--header-fg);
+}
+
+.menuIcon {
+    width: 20px;
+    height: 20px;
+}
+
+.mobileNav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 12px;
+    padding-bottom: 4px;
+    border-top: 1px solid var(--header-border);
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        padding: 24px 32px;
+    }
+
+    .inner {
+        gap: 24px;
+    }
+
+    .logoIcon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logoSvg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .logoText {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .desktopNav {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+    }
+
+    .mobileMenuButton {
+        display: none;
+    }
+
+    .mobileNav {
+        display: none;
+    }
+}
+
+/* Доступність: видимий фокус клавіатури */
+.header a:focus-visible,
+.header button:focus-visible {
+    outline: 2px solid var(--header-accent-from);
+    outline-offset: 2px;
+    border-radius: 4px;
+}

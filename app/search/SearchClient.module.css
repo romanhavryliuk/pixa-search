@@ -1,0 +1,150 @@
+.results {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.summary {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin: 0 0 24px;
+  font-family: var(--font-body, inherit);
+  font-size: 1.05rem;
+  color: var(--color-muted, #6b7280);
+}
+
+.count {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text, #111827);
+}
+
+.fetchingIndicator {
+  display: inline-flex;
+  align-self: center;
+  color: var(--color-accent, #3b82f6);
+}
+
+.term {
+  font-weight: 700;
+  color: transparent;
+  background-image: var(--gradient-brand, linear-gradient(135deg, #3b82f6 0%, #9333ea 100%));
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 16px;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.gridFetching {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.cell {
+  margin: 0;
+}
+
+.card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f3f4f6;
+  aspect-ratio: 4 / 3;
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.playBadge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(17, 24, 39, 0.55);
+  color: #fff;
+  pointer-events: none;
+}
+
+.playBadge svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.author {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 24px 12px 8px;
+  font-size: 0.8rem;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover .author {
+  opacity: 1;
+}
+
+.hint,
+.error {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 20px;
+  text-align: center;
+  font-size: 1.05rem;
+  color: #6b7280;
+}
+
+.error {
+  color: #b91c1c;
+}
