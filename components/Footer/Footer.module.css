@@ -1,0 +1,228 @@
+.footer {
+  /* Палітра (темна за замовчуванням, узгоджена з PixaSearch) */
+  --footer-bg: #111827;
+  /* фон футера */
+  --footer-fg: #ffffff;
+  /* основний текст */
+  --footer-muted: #9ca3af;
+  /* приглушений текст / посилання */
+  --footer-surface: #1f2937;
+  /* фон кнопки соцмережі */
+  --footer-surface-hover: #374151;
+  /* фон кнопки соцмережі при наведенні */
+  --footer-border: #1f2937;
+  /* лінія-розділювач */
+  --footer-accent-from: var(--color-accent, #3b82f6);
+  /* градієнт лого (початок) */
+  --footer-accent-to: var(--color-accent-secondary, #9333ea);
+  /* градієнт лого (кінець) */
+  --footer-link-accent: #60a5fa;
+  /* акцентні посилання (атрибуція) */
+  --footer-link-accent-hover: #93c5fd;
+
+  /* Розкладка */
+  --footer-max-width: 1440px;
+  --footer-radius: var(--radius-sm, 0.5rem);
+
+  width: 100%;
+  background: var(--footer-bg);
+  color: var(--footer-fg);
+  padding: 3rem 0;
+  font-family: var(--font-body, inherit);
+}
+
+.footer,
+.footer * {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: var(--footer-max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Верхня сітка */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Бренд */
+.brand__head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  border-radius: var(--footer-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom right,
+      var(--footer-accent-from),
+      var(--footer-accent-to));
+}
+
+.logo svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #ffffff;
+}
+
+.brand__name {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.brand__desc {
+  margin: 0 0 1.5rem;
+  max-width: 32rem;
+  color: var(--footer-muted);
+  line-height: 1.625;
+}
+
+/* Соцмережі */
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.social {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--footer-radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--footer-surface);
+  color: inherit;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.social:hover {
+  background: var(--footer-surface-hover);
+}
+
+.social svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Колонки посилань */
+.col {
+  min-width: 0;
+  /* щоб довгі посилання не розтягували колонку сітки */
+}
+
+.col__title {
+  margin: 0 0 1rem;
+  font-family: var(--font-heading, inherit);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.col__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.link {
+  color: var(--footer-muted);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--footer-fg);
+}
+
+/* Нижній рядок */
+.bottom {
+  padding-top: 2rem;
+  border-top: 1px solid var(--footer-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.bottom__text {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--footer-muted);
+}
+
+.bottom__link {
+  color: var(--footer-link-accent);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.bottom__link:hover {
+  color: var(--footer-link-accent-hover);
+}
+
+/* ── Адаптив — планшет (≥768px) ──────────────────── */
+@media screen and (min-width: 768px) {
+  .footer {
+    padding: 4rem 0;
+  }
+
+  .container {
+    padding: 0 2rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 3rem;
+  }
+
+  .brand {
+    grid-column: span 2 / span 2;
+  }
+
+  .bottom {
+    flex-direction: row;
+  }
+}
+
+/* ── Адаптив — десктоп (≥1440px) ──────────────────── */
+@media screen and (min-width: 1440px) {
+  .footer {
+    padding: 5rem 0;
+  }
+
+  .grid {
+    gap: 4rem;
+    margin-bottom: 3rem;
+  }
+}
+
+/* Доступність: видимий фокус клавіатури */
+.footer a:focus-visible {
+  outline: 2px solid var(--footer-link-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
