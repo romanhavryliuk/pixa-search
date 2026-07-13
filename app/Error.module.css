@@ -1,0 +1,46 @@
+.wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 96px 20px;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.retryButton {
+  padding: 12px 28px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  background-image: linear-gradient(to right, #3b82f6, #9333ea);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 150ms ease;
+}
+
+.retryButton:hover {
+  opacity: 0.9;
+}
+
+.homeLink {
+  padding: 12px 28px;
+  color: var(--color-text, #111827);
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  transition: background-color 150ms ease;
+}
+
+.homeLink:hover {
+  background-color: #f9fafb;
+}
