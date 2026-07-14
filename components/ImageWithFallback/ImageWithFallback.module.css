@@ -1,0 +1,41 @@
+/* Обгортка, видима під час завантаження зображення і після нього.
+   Позиція/розмір задаються класом, який передає споживач. */
+.wrapper {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: #f3f4f6;
+}
+
+.img {
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.imgLoaded {
+    opacity: 1;
+}
+
+.placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent, #3b82f6);
+}
+
+/* Плейсхолдер, видимий, коли оригінальне зображення не завантажилось.
+   Позиція/розмір задаються класом, який передає споживач. */
+.fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f4f6;
+}
+
+.fallback__img {
+    width: 48px;
+    height: 48px;
+}
