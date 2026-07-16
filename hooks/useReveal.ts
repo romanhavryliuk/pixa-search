@@ -13,12 +13,6 @@ export function useReveal<T extends HTMLElement>() {
     const el = ref.current;
     if (!el || revealed) return;
 
-    // SSR / старі середовища — показуємо одразу без анімації.
-    if (typeof IntersectionObserver === 'undefined') {
-      setRevealed(true);
-      return;
-    }
-
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
