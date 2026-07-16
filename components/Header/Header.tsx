@@ -65,6 +65,13 @@ export function Header({ onSearch }: HeaderProps) {
               <h1 className={css.logoText}>PixaSearch</h1>
             </Link>
 
+            <div id="search" className={css.search}>
+              <SearchBar
+                onSearch={handleSearch}
+                onSearchComplete={closeMobileMenu}
+              />
+            </div>
+
             <nav className={css.desktopNav}>
               <Link href="/#about" className={css.navLink}>
                 About Us
@@ -100,13 +107,6 @@ export function Header({ onSearch }: HeaderProps) {
               </Link>
             </nav>
           )}
-
-          <div id="search">
-            <SearchBar
-              onSearch={handleSearch}
-              onSearchComplete={closeMobileMenu}
-            />
-          </div>
         </div>
       </div>
     </header>
