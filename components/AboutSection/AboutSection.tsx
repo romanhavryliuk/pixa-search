@@ -10,37 +10,37 @@ import type { AboutFeature, AboutSectionProps } from '@/types/about';
 const DEFAULT_FEATURES: AboutFeature[] = [
   {
     icon: 'sparkles',
-    title: 'Мільйони зображень',
+    title: 'Millions of images',
     description:
-      'Доступ до величезної бібліотеки високоякісних зображень та відео від Pixabay',
+      'Access a vast library of high-quality images and videos from Pixabay',
     gradient: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
   },
   {
     icon: 'zap',
-    title: 'Швидкий пошук',
+    title: 'Fast search',
     description:
-      'Миттєвий пошук потрібних матеріалів за ключовими словами та фільтрами',
+      'Instantly find the content you need with keywords and filters',
     gradient: 'linear-gradient(135deg, #a855f7, #ec4899)',
   },
   {
     icon: 'heart',
-    title: 'Безкоштовно',
+    title: 'Free of charge',
     description:
-      'Всі зображення та відео доступні безкоштовно для комерційного використання',
+      'All images and videos are free to use, including for commercial projects',
     gradient: 'linear-gradient(135deg, #f97316, #ef4444)',
   },
   {
     icon: 'shield',
-    title: 'Ліцензія CC0',
-    description: 'Використовуйте матеріали без обмежень та вказівки авторства',
+    title: 'CC0 license',
+    description: 'Use the content without restrictions or attribution',
     gradient: 'linear-gradient(135deg, #22c55e, #10b981)',
   },
 ];
 
 /** Секція «Про нас»: заголовок, підзаголовок і сітка карток-переваг. */
 export function AboutSection({
-  title = 'Про нас',
-  subtitle = 'Ваша платформа для пошуку найкращих безкоштовних зображень та відео',
+  title = 'About us',
+  subtitle = 'Your platform for finding the best free images and videos',
   features = DEFAULT_FEATURES,
   className,
   id = 'about',
