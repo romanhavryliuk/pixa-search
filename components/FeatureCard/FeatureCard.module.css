@@ -1,0 +1,92 @@
+/* Обгортка — відповідає за появу (щоб не конфліктувати з hover-трансформом картки). */
+.wrap {
+  height: 100%;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+.revealIn {
+  animation: fadeUp 0.5s ease both;
+  animation-delay: calc(var(--index, 0) * 100ms);
+}
+
+/* Сама картка. Кольори успадковуються з CSS-змінних секції (див. AboutSection.module.css). */
+.card {
+  box-sizing: border-box;
+  height: 100%;
+  background: var(--about-card-bg, #ffffff);
+  border: 1px solid var(--about-card-border, #f3f4f6);
+  border-radius: var(--about-radius, 1rem);
+  padding: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 2rem;
+  }
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+.iconWrap {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.iconWrap svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: #ffffff;
+}
+
+.title {
+  margin: 0 0 0.75rem;
+  color: var(--about-card-title, #111827);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.description {
+  margin: 0;
+  color: var(--about-card-text, #4b5563);
+  line-height: 1.625;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap {
+    opacity: 1;
+  }
+  .revealIn {
+    animation: none;
+  }
+  .card {
+    transition: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+}

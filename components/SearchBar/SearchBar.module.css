@@ -121,20 +121,34 @@
 }
 
 @media screen and (min-width: 768px) {
+  /* Інпут і фільтри стають в один рядок, щоб хедер лишався компактним. */
   .wrapper {
-    gap: 18px;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .inputWrapper {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* Блок фільтрів (MediaTypeFilter) тримає натуральну ширину в один
+     рядок і не стискається — інакше чипси переносяться на другий ряд. */
+  .wrapper > :last-child {
+    flex: 0 0 auto;
   }
 
   .input {
-    height: 60px;
-    padding-left: 24px;
-    padding-right: 72px;
-    font-size: 17px;
+    height: 48px;
+    padding-left: 20px;
+    padding-right: 60px;
+    font-size: 16px;
   }
 
   .searchButton {
-    width: 46px;
-    height: 46px;
-    right: 7px;
+    width: 40px;
+    height: 40px;
+    right: 5px;
   }
 }
