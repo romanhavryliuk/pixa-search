@@ -1,16 +1,30 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { MediaTypeFilter } from "@/components/MediaTypeFilter/MediaTypeFilter";
 import { useMediaType } from "@/contexts/MediaTypeContext";
 import type { SearchBarProps } from "@/types/searchBar";
 import type { SearchType } from "@/types/pixabay";
 import css from "./SearchBar.module.css";
 
-export function SearchBar({ onSearch, onSearchComplete }: SearchBarProps) {
-  const [query, setQuery] = useState("");
+export function SearchBar({
+  initialQuery = "",
+  onSearch,
+  onSearchComplete,
+}: SearchBarProps) {
+  const [query, setQuery] = useState(initialQuery);
   const { mediaType, setMediaType } = useMediaType();
+
+  // Підхоплюємо запит з URL, якщо він змінився ззовні (клік по посиланню,
+  // кнопка "назад") — прямо під час рендеру, а не в ефекті. Поки
+  // користувач просто редагує поле, initialQuery не змінюється, тож
+  // локальний ввід не перезаписується під час набору тексту.
+  const [trackedQuery, setTrackedQuery] = useState(initialQuery);
+  if (initialQuery !== trackedQuery) {
+    setTrackedQuery(initialQuery);
+    setQuery(initialQuery);
+  }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -43,17 +57,31 @@ export function SearchBar({ onSearch, onSearchComplete }: SearchBarProps) {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search images and videos..."
+            aria-label="Search images and videos"
             className={css.input}
           />
 
-          <button
-            type="submit"
-            className={css.searchButton}
-            aria-label="Search"
-            disabled={!query.trim()}
-          >
-            <Search className={css.searchIcon} />
-          </button>
+          <div className={css.actions}>
+            {query && (
+              <button
+                type="button"
+                onClick={() => setQuery("")}
+                className={css.clearButton}
+                aria-label="Clear search"
+              >
+                <X className={css.clearIcon} />
+              </button>
+            )}
+
+            <button
+              type="submit"
+              className={css.searchButton}
+              aria-label="Search"
+              disabled={!query.trim()}
+            >
+              <Search className={css.searchIcon} />
+            </button>
+          </div>
         </div>
 
         <MediaTypeFilter value={mediaType} onChange={handleTypeChange} />

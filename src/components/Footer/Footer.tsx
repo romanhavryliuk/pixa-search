@@ -36,7 +36,6 @@ const DEFAULT_COLUMNS: FooterColumn[] = [
   {
     title: 'Navigation',
     links: [
-      { label: 'Search', href: '/#search' },
       { label: 'About', href: '/#about' },
       { label: 'Popular', href: '/#popular' },
     ],

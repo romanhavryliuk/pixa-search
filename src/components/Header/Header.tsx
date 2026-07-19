@@ -1,13 +1,38 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Image, Menu, X } from "lucide-react";
+import { Camera, Menu, X } from "lucide-react";
 import { SearchBar } from "@/components/SearchBar/SearchBar";
 import type { HeaderProps } from "@/types/header";
 import type { SearchType } from "@/types/pixabay";
 import css from "./Header.module.css";
+
+/**
+ * Читає активний `?query=` з URL для інпуту хедера. Винесено в окремий
+ * компонент під Suspense, бо `useSearchParams` інакше змусив би геть
+ * усі сторінки (хедер рендериться в кореневому layout) рендеритися
+ * динамічно замість статично.
+ */
+function HeaderSearchInput({
+  onSearch,
+  onSearchComplete,
+}: {
+  onSearch: (query: string, type: SearchType) => void;
+  onSearchComplete: () => void;
+}) {
+  const searchParams = useSearchParams();
+  const initialQuery = searchParams.get("query")?.trim() ?? "";
+
+  return (
+    <SearchBar
+      initialQuery={initialQuery}
+      onSearch={onSearch}
+      onSearchComplete={onSearchComplete}
+    />
+  );
+}
 
 export function Header({ onSearch }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -59,17 +84,26 @@ export function Header({ onSearch }: HeaderProps) {
           <div className={css.topRow}>
             <Link href="/" className={css.logo}>
               <div className={css.logoIcon}>
-                <Image className={css.logoSvg} />
+                <Camera className={css.logoSvg} />
               </div>
 
               <h1 className={css.logoText}>PixaSearch</h1>
             </Link>
 
-            <div id="search" className={css.search}>
-              <SearchBar
-                onSearch={handleSearch}
-                onSearchComplete={closeMobileMenu}
-              />
+            <div className={css.search}>
+              <Suspense
+                fallback={
+                  <SearchBar
+                    onSearch={handleSearch}
+                    onSearchComplete={closeMobileMenu}
+                  />
+                }
+              >
+                <HeaderSearchInput
+                  onSearch={handleSearch}
+                  onSearchComplete={closeMobileMenu}
+                />
+              </Suspense>
             </div>
 
             <nav className={css.desktopNav}>

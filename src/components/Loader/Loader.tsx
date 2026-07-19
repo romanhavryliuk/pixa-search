@@ -7,13 +7,13 @@ export default function Loader({
   size = 'medium',
 }: LoaderProps) {
   return (
-    <div
+    <span
       className={`${css.loaderWrapper} ${css[variant]}`}
       role="status"
       aria-live="polite"
     >
       <span className={`${css.loader} ${css[size]}`} />
       {variant !== 'button' && text && <span className={css.text}>{text}</span>}
-    </div>
+    </span>
   );
 }
