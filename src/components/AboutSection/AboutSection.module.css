@@ -3,6 +3,9 @@
  * Кольори винесені в CSS-змінні на `.section` — вони успадковуються дочірніми
  * компонентами (FeatureCard) через каскад, тож тему можна змінити в одному місці:
  *   <AboutSection className="about--dark" />  +  .about--dark { --about-card-bg: #111827; }
+ *
+ * Розкладка — mobile-first: базові правила = мобільний,
+ * адаптивні перевизначення зібрані у блоки по брейкпойнтах наприкінці файлу.
  */
 
 .section {
@@ -27,13 +30,7 @@
     var(--about-bg-from),
     var(--about-bg-to)
   );
-  padding: 4rem 0;
-}
-
-@media (min-width: 768px) {
-  .section {
-    padding: 6rem 0;
-  }
+  padding: 3rem 0;
 }
 
 .container {
@@ -43,22 +40,10 @@
   padding: 0 1rem;
 }
 
-@media (min-width: 768px) {
-  .container {
-    padding: 0 2rem;
-  }
-}
-
 /* Шапка */
 .header {
   text-align: center;
   margin-bottom: 3rem;
-}
-
-@media (min-width: 768px) {
-  .header {
-    margin-bottom: 4rem;
-  }
 }
 
 .title {
@@ -70,18 +55,6 @@
   opacity: 0;
 }
 
-@media (min-width: 768px) {
-  .title {
-    font-size: 2.25rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .title {
-    font-size: 3rem;
-  }
-}
-
 .subtitle {
   margin: 0 auto;
   max-width: 48rem;
@@ -89,12 +62,6 @@
   font-size: 1.125rem;
   line-height: 1.6;
   opacity: 0;
-}
-
-@media (min-width: 768px) {
-  .subtitle {
-    font-size: 1.25rem;
-  }
 }
 
 .revealIn {
@@ -109,19 +76,6 @@
   gap: 1.5rem;
 }
 
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -133,6 +87,42 @@
   }
 }
 
+/* ── Адаптив — планшет (≥768px) ──────────────────── */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+
+  .header {
+    margin-bottom: 4rem;
+  }
+
+  .title {
+    font-size: 2.25rem;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+/* ── Адаптив — десктоп (≥1024px) ──────────────────── */
+@media (min-width: 1024px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ── Доступність ──────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .title,
   .subtitle {

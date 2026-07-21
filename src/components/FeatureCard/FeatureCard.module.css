@@ -24,12 +24,6 @@
     box-shadow 0.2s ease;
 }
 
-@media (min-width: 768px) {
-  .card {
-    padding: 2rem;
-  }
-}
-
 .card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
@@ -73,6 +67,13 @@
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* ── Адаптив — планшет (≥768px) ──────────────────── */
+@media (min-width: 768px) {
+  .card {
+    padding: 2rem;
   }
 }
 
